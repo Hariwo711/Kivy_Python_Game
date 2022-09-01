@@ -1,5 +1,25 @@
 #:kivy 1.0.9
 
+<MenuScreen>:
+    BoxLayout:
+        Button:
+            text: 'Goto settings'
+            on_press: root.manager.current = 'settings'
+        Button:
+            text: 'Quit'
+
+<SettingsScreen>:
+    BoxLayout:
+        Button:
+            text: 'My settings button'
+        Button:
+            text: 'Back to menu'
+            on_press: root.manager.current = 'menu'
+
+
+
+
+
 <SoccerBall>:
     size: 50, 50 
     canvas:
@@ -58,7 +78,7 @@
         
     SoccerPlayer:
         id: player_left
-        x: root.width/4
+        x: root.width*3/4
         center_y: root.center_y
         center_x: root.center_x
         

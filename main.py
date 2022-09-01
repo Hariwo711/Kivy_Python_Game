@@ -6,6 +6,15 @@ from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProper
 from kivy.vector import Vector
 from kivy.clock import Clock
 from kivy.core.window import Window
+# from kivy.lang import Builder
+# from kivy.uix.screenmanager import ScreenManager, Screen
+
+# class MenuScreen(Screen):
+#     pass
+
+# class SettingsScreen(Screen):
+#     pass
+
 
 class SoccerPlayer(Widget):
     score = NumericProperty(0)
@@ -125,17 +134,17 @@ class SoccerGame(Widget):
                 self.player2.score += 1
                 self.serve_ball(vel=(4*direction_ball, 0))
             else:
-                self.ball.velocity_x *= -0.5
+                self.ball.velocity_x *= -1
         if self.ball.x > self.width:
             if (self.height*0.26 < self.ball.y) & (self.ball.y < self.height*0.74):
                 self.player1.score += 1
                 self.serve_ball(vel=(4*direction_ball, 0))
             else:
-                self.ball.velocity_x *= -0.5
-        if self.ball.velocity_x > 10:
+                self.ball.velocity_x *= -1
+        if self.ball.velocity_x > 9:
             self.ball.velocity_x = 4
         print(self.ball.velocity_x)
-        if self.ball.velocity_y > 10:
+        if self.ball.velocity_y > 9:
             self.ball.velocity_y = 4
         print(self.ball.velocity_y)
 
@@ -145,9 +154,13 @@ class FootballApp(App):
     def build(self):
         game = SoccerGame()
         game.serve_ball()
+        # sm = ScreenManager()
+        # sm.add_widget(MenuScreen(name='menu'))
+        # sm.add_widget(SettingsScreen(name='settings'))
         Clock.schedule_interval(game.update, 1.0 / 60.0)
+        # if SettingsScreen(name = 'settings' ):
+        #     return sm
         return game
-
 
 if __name__ == '__main__':
     FootballApp().run()
