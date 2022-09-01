@@ -147,4 +147,4 @@ class FootballApp(App):
 
 
 if __name__ == '__main__':
-    SuccerApp().run()
+    FootballApp().run()
