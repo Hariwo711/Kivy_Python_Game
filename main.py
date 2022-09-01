@@ -138,7 +138,7 @@ class SuccerGame(Widget):
 
 
 
-class SuccerApp(App):
+class FootballApp(App):
     def build(self):
         game = SuccerGame()
         game.serve_ball()
