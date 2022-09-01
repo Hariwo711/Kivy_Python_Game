@@ -1,6 +1,6 @@
 #:kivy 1.0.9
 
-<SuccerBall>:
+<SoccerBall>:
     size: 50, 50 
     canvas:
         Ellipse:
@@ -8,7 +8,7 @@
             pos: self.pos
             size: self.size          
 
-<SuccerPlayer>:
+<SoccerPlayer>:
     size: 100, 100
     src: 'p1.png'
     canvas.before:
@@ -17,8 +17,8 @@
             size:self.size
             source:self.src
 
-<SuccerGame>:
-    ball: succer_ball
+<SoccerGame>:
+    ball: soccer_ball
     player1: player_left
     player2: player_right
     
@@ -52,19 +52,19 @@
         center_x: root.center_x
         top: root.top - (root.height/10)
         text: 'PUMPS BALL GAME'
-    SuccerBall:
-        id: succer_ball
+    SoccerBall:
+        id: soccer_ball
         center: self.parent.center
         
-    SuccerPlayer:
+    SoccerPlayer:
         id: player_left
         x: root.width/4
         center_y: root.center_y
         center_x: root.center_x
         
-    SuccerPlayer:
+    SoccerPlayer:
         id: player_right
-        sorce: 'p2.png'
-        x: root.width*3/4
+        sorce: 'p1.png'
+        x: root.width/3
         center_y: root.center_y
         center_x: root.center_x

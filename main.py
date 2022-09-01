@@ -7,7 +7,7 @@ from kivy.vector import Vector
 from kivy.clock import Clock
 from kivy.core.window import Window
 
-class SuccerPlayer(Widget):
+class SoccerPlayer(Widget):
     score = NumericProperty(0)
 
     def bounce_ball(self, ball):
@@ -19,7 +19,7 @@ class SuccerPlayer(Widget):
             ball.velocity = vel.x, vel.y + offset
 
 
-class SuccerBall(Widget):
+class SoccerBall(Widget):
     velocity_x = NumericProperty(0)
     velocity_y = NumericProperty(0)
     velocity = ReferenceListProperty(velocity_x, velocity_y)
@@ -28,13 +28,13 @@ class SuccerBall(Widget):
         self.pos = Vector(*self.velocity) + self.pos
 spd = 20
 
-class SuccerGame(Widget):
+class SoccerGame(Widget):
     ball = ObjectProperty(None)
     player1 = ObjectProperty(None)
     player2 = ObjectProperty(None)
 
     def __init__(self, **kwargs):
-        super(SuccerGame, self).__init__(**kwargs)
+        super(SoccerGame, self).__init__(**kwargs)
         self.keybord = Window.request_keyboard(self._on_keyboard_closed, self)
         self.keybord.bind(on_key_down=self._on_key_down)
         self.keybord.bind(on_key_up=self._on_key_up)
@@ -86,13 +86,16 @@ class SuccerGame(Widget):
         
         
         if 'x' in self.pressed_keys:
-            cur_x = self.height
-            cur_y = self.height
-            cur2_x = self.height / 2
-            cur2_y = self.height / 2
+            cur_x = self.player1.pos[1]
+            cur_y = self.player1.pos[1]
+            cur2_x = self.width*3/4
+            cur2_y = self.width*3/4
             self.player1.score = 0
             self.player2.score = 0
+            randomlist = ["1", "-1"]
+            direction_ball = int(random.choice(randomlist))
             self.ball.center = self.center
+            self.ball.velocity = (4 * direction_ball, 0)
         # print('step, x, y', dt, cur_x, cur_y)
         self.player1.pos = (cur_x, cur_y)
         self.player2.pos = (cur2_x, cur2_y)
@@ -132,15 +135,15 @@ class SuccerGame(Widget):
         if self.ball.velocity_x > 10:
             self.ball.velocity_x = 4
         print(self.ball.velocity_x)
-        if self.ball.velocity_x > 10:
-            self.ball.velocity_x = 4
-        print(self.ball.velocity_x)
+        if self.ball.velocity_y > 10:
+            self.ball.velocity_y = 4
+        print(self.ball.velocity_y)
 
 
 
 class FootballApp(App):
     def build(self):
-        game = SuccerGame()
+        game = SoccerGame()
         game.serve_ball()
         Clock.schedule_interval(game.update, 1.0 / 60.0)
         return game
