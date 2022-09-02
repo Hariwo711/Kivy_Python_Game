@@ -145,6 +145,8 @@ class SoccerGame(Widget):
 class widget_button(Widget):
     pass
 
+class bakcground_button(Widget):
+    pass
 
 class FootballApp(App):
     def build(self):
