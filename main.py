@@ -1,31 +1,26 @@
 #!/usr/bin/python
 import random
+from tkinter import Button
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProperty
 from kivy.vector import Vector
 from kivy.clock import Clock
 from kivy.core.window import Window
-# from kivy.lang import Builder
-# from kivy.uix.screenmanager import ScreenManager, Screen
-
-# class MenuScreen(Screen):
-#     pass
-
-# class SettingsScreen(Screen):
-#     pass
-
-
 class SoccerPlayer(Widget):
     score = NumericProperty(0)
 
     def bounce_ball(self, ball):
+        
         if self.collide_widget(ball):
             vx, vy = ball.velocity
             offset = (ball.center_y - self.center_y) / (self.height / 2)
             bounced = Vector(-1 * vx, vy)
             vel = bounced * 1.1
             ball.velocity = vel.x, vel.y + offset
+        # if self.collide_widget(ball):
+        #     vx, vy = self.player1.pos
+        #     ball.velocity_x = vx
 
 
 class SoccerBall(Widget):
@@ -141,26 +136,26 @@ class SoccerGame(Widget):
                 self.serve_ball(vel=(4*direction_ball, 0))
             else:
                 self.ball.velocity_x *= -1
-        if self.ball.velocity_x > 9:
+        if self.ball.velocity_x > 5:
             self.ball.velocity_x = 4
         print(self.ball.velocity_x)
-        if self.ball.velocity_y > 9:
+        if self.ball.velocity_y > 5:
             self.ball.velocity_y = 4
         print(self.ball.velocity_y)
-
+class widget_button(Widget):
+    pass
 
 
 class FootballApp(App):
     def build(self):
         game = SoccerGame()
         game.serve_ball()
-        # sm = ScreenManager()
-        # sm.add_widget(MenuScreen(name='menu'))
-        # sm.add_widget(SettingsScreen(name='settings'))
-        Clock.schedule_interval(game.update, 1.0 / 60.0)
-        # if SettingsScreen(name = 'settings' ):
-        #     return sm
+        Clock.schedule_interval(game.update,1/ 60)
         return game
-
+class ButtonApp(App):
+    def build(self):
+        box = widget_button()
+        return box
 if __name__ == '__main__':
+    ButtonApp().run()
     FootballApp().run()
