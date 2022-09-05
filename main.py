@@ -7,6 +7,8 @@ from kivy.properties import NumericProperty, ReferenceListProperty, ObjectProper
 from kivy.vector import Vector
 from kivy.clock import Clock
 from kivy.core.window import Window
+print('THIS IS BETA BRANCH'
+)
 class SoccerPlayer(Widget):
     score = NumericProperty(0)
 
