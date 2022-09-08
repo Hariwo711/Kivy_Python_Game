@@ -69,35 +69,41 @@ class SoccerGame(Widget):
         cur_y= self.player1.pos[1]     
         cur2_x= self.player2.pos[0]
         cur2_y= self.player2.pos[1]
-        step = 1000 * dt
+        step = 500 * dt
         
         if 'w' in self.pressed_keys:
-            cur_y += step
+            cur2_y += step
+            
         if 'd' in self.pressed_keys:
-            cur_x += step
+            cur2_x += step
         if 's' in self.pressed_keys:
-            cur_y -= step
+            cur2_y -= step
         if 'a' in self.pressed_keys:
-            cur_x -= step
+            cur2_x -= step
         
         
         if 'u' in self.pressed_keys:
-            cur2_y += step
+            cur_y += step
         if 'k' in self.pressed_keys:
-            cur2_x += step
+            cur_x += step
         if 'j' in self.pressed_keys:
-            cur2_y -= step
+            cur_y -= step
         if 'h' in self.pressed_keys:
-            cur2_x -= step    
+            cur_x -= step    
         
         
-        if 'x' in self.pressed_keys:
+        if 'z' in self.pressed_keys:
             cur_x = self.player1.pos[1]
             cur_y = self.player1.pos[1]
             cur2_x = self.width*3/4
             cur2_y = self.width*3/4
             self.player1.score = 0
             self.player2.score = 0
+        if 'x' in self.pressed_keys:
+            cur_x = self.center_x-10
+            cur_y = self.center_y-20
+            cur2_x = self.center_x+20
+            cur2_y = self.center_y-20
             randomlist = ["1", "-1"]
             direction_ball = int(random.choice(randomlist))
             self.ball.center = self.center
