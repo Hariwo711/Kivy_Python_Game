@@ -167,4 +167,5 @@ class ButtonApp(App):
         box = widget_button()
         return box
 if __name__ == '__main__':
+    ButtonApp().run()
     FootballApp().run()
